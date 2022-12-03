@@ -1,4 +1,4 @@
-FROM python:3.11-alpine3.17
+FROM python:3.11-slim-buster
 
 EXPOSE 5000
 
@@ -8,6 +8,6 @@ WORKDIR /usr/src/app
 
 COPY app .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 CMD [ "python", "asgi.py" ]
