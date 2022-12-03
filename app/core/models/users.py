@@ -1,6 +1,6 @@
 from pydantic import constr, EmailStr, BaseModel
 
-from app.models import BaseSchema
+from core.models import BaseSchema
 
 
 class UserResponseSchema(BaseSchema):

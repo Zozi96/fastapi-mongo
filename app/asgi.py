@@ -1,8 +1,8 @@
 from uvicorn import run
 
 from fastapi import FastAPI, responses
-from app.settings import API
-from app.routers.users import router as users_router
+from core.settings import API
+from core.routers.users import router as users_router
 
 app = FastAPI(**API)
 

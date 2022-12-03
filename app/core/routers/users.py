@@ -1,10 +1,10 @@
 from typing import List
 from fastapi import APIRouter, Body, Request, HTTPException, status, encoders
 
-from app.models.users import UserResponseSchema, UserCreateSchema
-from app.security import password_hash
-from app.database import user_collection
-from app.utils import get_object_id
+from core.models.users import UserResponseSchema, UserCreateSchema
+from core.security import password_hash
+from core.database import user_collection
+from core.utils import get_object_id
 
 router = APIRouter(prefix="/users", tags=["users"])
 
