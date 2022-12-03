@@ -9,21 +9,13 @@ from core.utils import get_object_id
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.get(
-    path="/",
-    response_model=List[UserResponseSchema],
-    response_description="List all users",
-)
+@router.get(path="/", response_model=List[UserResponseSchema], response_description="List all users")
 async def get_users(request: Request) -> List[UserResponseSchema]:
     users = await user_collection.find({}).to_list(length=100)
     return users
 
 
-@router.get(
-    path="/{id}",
-    response_model=UserResponseSchema,
-    response_description="Get a single user",
-)
+@router.get(path="/{id}", response_model=UserResponseSchema, response_description="Get a single user")
 async def get_user(id: str, request: Request) -> UserResponseSchema | None:
     object_id = await get_object_id(id)
     user = await user_collection.find_one({"_id": object_id})
@@ -34,11 +26,7 @@ async def get_user(id: str, request: Request) -> UserResponseSchema | None:
     return user
 
 
-@router.post(
-    path="/",
-    response_model=UserResponseSchema,
-    response_description="Create a new user",
-)
+@router.post(path="/", response_model=UserResponseSchema, response_description="Create a new user")
 async def create_user(user: UserCreateSchema = Body()) -> UserResponseSchema:
     user_data: dict = encoders.jsonable_encoder(user)
     user_data["password"] = await password_hash(user_data["password"])
