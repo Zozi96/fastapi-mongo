@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+from decouple import config
 from motor import motor_asyncio
 from motor.core import AgnosticCollection
 
-USERNAME: str = "zozi"
-PASSWORD: str = "Zozifer96"
-HOST: str = "testing.1lksfd2.mongodb.net"
+USERNAME = config("MONGO_USERNAME", cast=str)
+PASSWORD = config("MONGO_PASSWORD", cast=str)
+HOST = config("MONGO_HOST", cast=str)
 
 DB_URI: str = (
     f"mongodb+srv://{USERNAME}:{PASSWORD}@{HOST}/test?retryWrites=true&w=majority"
