@@ -16,7 +16,7 @@ async def get_users(request: Request) -> List[UserResponseSchema]:
 
 
 @router.get(path="/{id}", response_model=UserResponseSchema, response_description="Get a single user")
-async def get_user(id: str, request: Request) -> UserResponseSchema | None:
+async def get_user(id: str, request: Request) -> UserResponseSchema or None:
     object_id = await get_object_id(id)
     user = await user_collection.find_one({"_id": object_id})
     if not user:

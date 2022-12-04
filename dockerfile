@@ -1,6 +1,4 @@
-FROM python:3.11-slim-buster
-
-EXPOSE 5000
+FROM public.ecr.aws/lambda/python:3.9
 
 ENV PYTHONUNBUFFERED=1
 
@@ -10,4 +8,4 @@ COPY app .
 
 RUN pip install -r requirements.txt
 
-CMD [ "uvicorn", "asgi:app", "--host", "0.0.0.0", "--port", "5000" ]
+CMD [ "asgi.handler" ]
