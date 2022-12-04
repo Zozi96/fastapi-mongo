@@ -1,8 +1,8 @@
-from uvicorn import run
-
 from fastapi import FastAPI, responses
-from core.settings import API
+from mangum import Mangum
+
 from core.routers.users import router as users_router
+from core.settings import API
 
 app = FastAPI(**API)
 
@@ -13,3 +13,5 @@ async def root():
 
 
 app.include_router(users_router, prefix="/api")
+
+handler = Mangum(app)
