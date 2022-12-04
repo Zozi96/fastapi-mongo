@@ -8,4 +8,4 @@ COPY app .
 
 RUN pip install -r requirements.txt
 
-CMD [ "asgi.handler" ]
+CMD [ "app.asgi.handler" ]
